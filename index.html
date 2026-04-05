@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Journey ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.2rem;
+  max-width: 600px;
+}
+
+.memory {
+  width: 260px;
+  border-radius: 15px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(255, 100, 150, 0.3);
+}
+
+button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(45deg, #ff4d6d, #ff758c);
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ⭐ STARS -->
+<canvas id="stars"></canvas>
+
+<!-- ❤️ INTRO -->
+<section>
+  <h1>Hey Muddu ❤️</h1>
+  <p>This is not just a website... it's our story.</p>
+  <p>Scroll slowly ✨</p>
+</section>
+
+<!-- 📸 TIMELINE -->
+<section>
+  <h1>The Beginning this day 4 years back</h1>
+  <img src="images/pic1.jpg" class="memory">
+  <p>Our first date... the moment our amazing journey started ❤️</p>
+</section>
+
+<section>
+  <h1>Memory 2</h1>
+  <img src="images/pic2.jpg" class="memory">
+  <p>❤️ Our First movie date ❤️</p>
+</section>
+
+<section>
+  <h1>Memory 3</h1>
+  <img src="images/pic3.jpg" class="memory">
+  <p>Every moment with you became special every class that i attended with you.Every moment we shared together, meeting after the classes before going home 💫</p>
+</section>
+
+<section>
+  <h1>Memory 4</h1>
+  <img src="images/pic4.jpg" class="memory">
+  <p>We laughed, we fought, we stayed ❤️. Our bond started to grow stronger than feviqwick 😂</p>
+</section>
+
+<section>
+  <h1>Memory 5</h1>
+  <img src="images/pic5.jpg" class="memory">
+  <p>Some memories just live forever...and i want to create each one of them with you and only you.</p>
+</section>
+
+<section>
+  <h1>Memory 6</h1>
+  <img src="images/pic6.jpg" class="memory">
+  <p>And I kept falling for you more each day ❤️. If just 4 years feels so amazing with you , I am just eager to see how amazing would it be to spend all my life with you.
+    Giving you all my love and growing and achieving everything we have dreamt of.</p>
+</section>
+
+<section>
+  <h1>Today ❤️</h1>
+  <img src="images/pic7.jpg" class="memory">
+  <p>This is us now... stronger than ever.</p>
+</section>
+
+<!-- 💍 PROPOSAL -->
+<section>
+  <h1>One Question 💍</h1>
+  <p>Will you stay with me forever?</p>
+  <button onclick="yesClicked()">YES 💖</button>
+  <button onclick="yesClicked()">YES (Obviously 😏)</button>
+</section>
+
+<script>
+// 🎵 MUSIC AUTOPLAY FIX
+document.addEventListener('click', function () {
+  document.getElementById('bgMusic').play();
+}, { once: true });
+
+// ⭐ STARS
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = Array.from({length: 200}, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  r: Math.random() * 1.5
+}));
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'white';
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+setInterval(drawStars, 50);
+
+// 🌊 SCROLL EFFECT
+const sections = document.querySelectorAll('section');
+
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.8;
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < trigger) {
+      sec.classList.add('show');
+    }
+  });
+});
+
+// 🎆 FIREWORKS
+function yesClicked() {
+  alert('Forever starts now ❤️');
+  for (let i = 0; i < 40; i++) {
+    let d = document.createElement('div');
+    d.style.position = 'fixed';
+    d.style.left = Math.random()*100+'vw';
+    d.style.top = Math.random()*100+'vh';
+    d.style.width = '6px';
+    d.style.height = '6px';
+    d.style.background = 'white';
+    d.style.borderRadius = '50%';
+    d.style.animation = 'explode 1s ease-out';
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),1000);
+  }
+}
+
+// FIREWORK ANIMATION
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes explode {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(8); opacity: 0; }
+}`;
+document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>
